@@ -15,7 +15,7 @@ We are committed to providing a welcoming and inspiring community for all. Pleas
 
 ### 1. Fork and Clone
 ```bash
-git clone https://github.com/yourusername/crypto-smart-money-agent.git
+git clone https://github.com/detaapril1/crypto-smart-money-agent.git
 cd crypto-smart-money-agent
 ```
 
