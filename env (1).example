@@ -1,0 +1,161 @@
+# ============================================
+# Crypto Smart Money AI Agent Configuration
+# ============================================
+# Copy this file to .env and fill in your values
+
+# ============================================
+# Application Configuration
+# ============================================
+APP_NAME=Crypto Smart Money AI Agent
+VERSION=1.0.0
+ENVIRONMENT=production
+LOG_LEVEL=INFO
+
+# ============================================
+# Telegram Configuration
+# ============================================
+# Get these from BotFather on Telegram
+TELEGRAM_BOT_TOKEN=your_bot_token_from_botfather
+TELEGRAM_CHAT_ID=your_chat_id_here
+
+# ============================================
+# API Keys
+# ============================================
+
+# DexScreener API (https://dexscreener.com)
+DEXSCREENER_API_KEY=optional_api_key
+
+# OpenRouter API (https://openrouter.ai)
+# Used for AI analysis
+OPENROUTER_API_KEY=your_openrouter_api_key
+
+# Alternative: Google Gemini API
+GEMINI_API_KEY=your_gemini_api_key
+
+# Helius API for Solana smart money tracking
+HELIUS_API_KEY=your_helius_api_key
+
+# Birdeye API for token analytics
+BIRDEYE_API_KEY=your_birdeye_api_key
+
+# ============================================
+# Database Configuration
+# ============================================
+
+# SQLite (default)
+# DATABASE_URL=sqlite:///data/crypto_agent.db
+# DATABASE_TYPE=sqlite
+
+# PostgreSQL (recommended for production)
+DATABASE_URL=postgresql://crypto_user:secure_password@localhost:5432/crypto_agent
+DATABASE_TYPE=postgresql
+DB_PASSWORD=secure_password
+
+# ============================================
+# Scanning Configuration
+# ============================================
+
+# Interval between scans in seconds (default: 300 = 5 minutes)
+SCAN_INTERVAL=300
+
+# Maximum concurrent token analyses
+MAX_CONCURRENT_SCANS=10
+
+# Minimum liquidity to consider (in USD)
+MIN_LIQUIDITY=20000
+
+# Minimum market cap to consider (in USD)
+MIN_MARKET_CAP=50000
+
+# ============================================
+# AI Configuration
+# ============================================
+
+# AI Provider: "openrouter" or "gemini"
+AI_PROVIDER=openrouter
+
+# Model to use
+# For OpenRouter: "meta-llama/llama-2-70b-chat", "gpt-4-turbo", etc.
+AI_MODEL=meta-llama/llama-2-70b-chat
+
+# AI temperature (0.0-1.0, higher = more creative)
+AI_TEMPERATURE=0.7
+
+# Maximum tokens per response
+AI_MAX_TOKENS=1000
+
+# ============================================
+# Alert Configuration
+# ============================================
+
+# Cooldown between alerts for same token (seconds)
+ALERT_COOLDOWN=300
+
+# Maximum alerts per day
+MAX_DAILY_ALERTS=50
+
+# ============================================
+# VPS/Server Configuration
+# ============================================
+
+# Server host
+VPS_HOST=0.0.0.0
+
+# Server port
+VPS_PORT=8000
+
+# Enable API endpoint for dashboard
+ENABLE_API=true
+
+# Log file path
+LOG_FILE=logs/crypto_agent.log
+
+# ============================================
+# Advanced Configuration
+# ============================================
+
+# Performance check intervals (minutes)
+# Typically: 15 minutes, 1 hour, 4 hours, 24 hours
+PERFORMANCE_CHECK_INTERVALS=15,60,240,1440
+
+# How long to keep performance records (days)
+PERFORMANCE_RETENTION_DAYS=90
+
+# ============================================
+# How to obtain API keys:
+# ============================================
+
+# TELEGRAM_BOT_TOKEN:
+#   1. Chat with @BotFather on Telegram
+#   2. Type /newbot and follow instructions
+#   3. Copy the token provided
+
+# TELEGRAM_CHAT_ID:
+#   1. Add your bot to a group or chat
+#   2. Send a message
+#   3. Visit: https://api.telegram.org/bot{TOKEN}/getUpdates
+#   4. Find your chat ID in the response
+
+# OPENROUTER_API_KEY:
+#   1. Visit https://openrouter.ai
+#   2. Sign up and get API key
+#   3. Requires payment/credits
+
+# GEMINI_API_KEY:
+#   1. Visit https://makersuite.google.com/app/apikey
+#   2. Create new API key
+#   3. Free tier available
+
+# DEXSCREENER_API_KEY:
+#   1. Visit https://dexscreener.com/api
+#   2. Free API (no key needed currently)
+
+# HELIUS_API_KEY:
+#   1. Visit https://dev.helius.xyz
+#   2. Sign up for Solana data API
+#   3. Free tier available
+
+# BIRDEYE_API_KEY:
+#   1. Visit https://www.birdeye.so/
+#   2. Sign up for API access
+#   3. Free tier available

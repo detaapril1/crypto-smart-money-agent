@@ -1,0 +1,79 @@
+version: '3.9'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: crypto_agent_postgres
+    environment:
+      POSTGRES_USER: crypto_user
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-secure_password}
+      POSTGRES_DB: crypto_agent
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U crypto_user"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - crypto_network
+
+  # Main Agent Application
+  agent:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: crypto_smart_money_agent
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      ENVIRONMENT: production
+      DATABASE_URL: postgresql://crypto_user:${DB_PASSWORD:-secure_password}@postgres:5432/crypto_agent
+      DATABASE_TYPE: postgresql
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
+      TELEGRAM_CHAT_ID: ${TELEGRAM_CHAT_ID}
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY}
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+      DEXSCREENER_API_KEY: ${DEXSCREENER_API_KEY}
+      HELIUS_API_KEY: ${HELIUS_API_KEY}
+      BIRDEYE_API_KEY: ${BIRDEYE_API_KEY}
+      LOG_LEVEL: INFO
+      ENABLE_API: "true"
+      VPS_PORT: 8000
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    networks:
+      - crypto_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Optional: Adminer for database management
+  adminer:
+    image: adminer
+    container_name: crypto_agent_adminer
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    networks:
+      - crypto_network
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  crypto_network:
+    driver: bridge
