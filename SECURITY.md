@@ -135,5 +135,5 @@ For security questions (non-vulnerability):
 
 ---
 
-**Last Updated:** 2024-01-20
+**Last Updated:** 2026-06-13
 **Version:** 1.0
