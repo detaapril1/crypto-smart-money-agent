@@ -77,7 +77,7 @@ project/
 
 1. **Clone and setup**
 ```bash
-git clone https://github.com/yourusername/crypto-smart-money-agent.git
+git clone https://github.com/detaapril1/crypto-smart-money-agent.git
 cd crypto-smart-money-agent
 ```
 
